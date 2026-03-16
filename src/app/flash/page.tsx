@@ -59,7 +59,6 @@ function DraggableFlash({ src, index }: { src: string; index: number }) {
         height={400}
         className="w-full h-auto pointer-events-none select-none"
         draggable={false}
-        style={{ mixBlendMode: "screen" }}
       />
     </motion.div>
   );
