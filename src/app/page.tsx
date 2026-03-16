@@ -105,21 +105,20 @@ export default function Home() {
               return (
                 <motion.div
                   key={i}
-                  className={`relative overflow-hidden bg-white/5 ${
+                  className={`relative overflow-hidden bg-white/5 group ${
                     isTall ? "row-span-2" : ""
                   }`}
                   style={{ aspectRatio: isTall ? "3/5" : "4/3" }}
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.3 + i * 0.1 }}
-                  whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
                 >
                   <Image
                     src={src}
                     alt="Featured tattoo work"
                     fill
                     sizes="(max-width: 768px) 50vw, 25vw"
-                    className="object-cover"
+                    className="object-cover transition-opacity duration-300 group-hover:opacity-80"
                     priority={i < 4}
                   />
                 </motion.div>
@@ -141,12 +140,8 @@ export default function Home() {
               book now
             </Link>
           </motion.div>
-        </div>
-      </section>
 
-      {/* Second section — more marquee rows with different opacity */}
-      <section className="relative z-[1] py-20 overflow-hidden">
-        {/* Portfolio teaser */}
+          {/* Portfolio teaser */}
         <div className="relative z-[1] max-w-6xl mx-auto px-6 md:px-12 mt-16">
           <motion.div
             initial={{ opacity: 0 }}
@@ -162,6 +157,13 @@ export default function Home() {
             </Link>
           </motion.div>
         </div>
+        
+        </div>
+      </section>
+
+      {/* Second section — more marquee rows with different opacity */}
+      <section className="relative z-[1] py-20 overflow-hidden">
+        
       </section>
     </div>
   );
