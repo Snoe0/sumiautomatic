@@ -12,8 +12,6 @@ const featuredImages = [
   "/images/home/hero-4.png",
   "/images/home/hero-5.png",
   "/images/portfolio/fresh-1.jpeg",
-  "/images/portfolio/fresh-3.jpeg",
-  "/images/portfolio/fresh-5.jpeg",
 ];
 
 function MarqueeRow({ direction = "left", speed = 30 }: { direction?: "left" | "right"; speed?: number }) {

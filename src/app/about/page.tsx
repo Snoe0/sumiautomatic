@@ -48,7 +48,7 @@ export default function About() {
           </ScrollReveal>
 
           {/* Bio */}
-          <div className="md:sticky md:top-24">
+          <div>
             <ScrollReveal delay={0.15}>
               <div className="space-y-6 text-sm leading-relaxed tracking-wide">
                 <div>

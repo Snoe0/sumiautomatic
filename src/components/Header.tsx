@@ -18,7 +18,7 @@ export default function Header() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-[#0a0a0a]/80 backdrop-blur-md border-b border-white/5">
       <div className="flex items-center justify-between px-6 py-4 md:px-10">
-        <Link href="/" className="text-sm tracking-widest uppercase font-light text-white">
+        <Link href="/" className="text-sm tracking-widest font-light text-white">
           @sumiautomatic
         </Link>
 
