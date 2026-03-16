@@ -1,12 +1,12 @@
 import Image from "next/image";
 import { Metadata } from "next";
 import ScrollReveal from "@/components/ScrollReveal";
+import InstagramGrid from "@/components/InstagramGrid";
+import { fetchInstagramPosts } from "@/lib/instagram";
 
 export const metadata: Metadata = {
   title: "Portfolio — @sumiautomatic",
 };
-
-const igImages = Array.from({ length: 7 }, (_, i) => `/images/portfolio/ig-${i + 1}.png`);
 
 const freshImages = Array.from({ length: 8 }, (_, i) => `/images/portfolio/fresh-${i + 1}.jpeg`);
 
@@ -64,23 +64,35 @@ function ImageGrid({ images, columns = 3 }: { images: string[]; columns?: number
   );
 }
 
-export default function Portfolio() {
+export default async function Portfolio() {
+  const instagramPosts = await fetchInstagramPosts(12);
+
   return (
     <div className="max-w-6xl mx-auto px-6 py-12">
       <ScrollReveal>
-        <h1 className="text-4xl md:text-5xl font-extralight tracking-tight mb-16 text-white">
+        <h1 className="text-4xl md:text-5xl font-thin tracking-wide mb-16 text-white">
           portfolio
         </h1>
       </ScrollReveal>
 
-      {/* Instagram Posts */}
+      {/* Instagram Posts — live feed or fallback */}
       <section className="mb-20">
         <ScrollReveal>
-          <h2 className="text-sm tracking-widest uppercase mb-8 text-white/40">
-            Instagram
-          </h2>
+          <div className="flex items-center gap-3 mb-8">
+            <h2 className="text-sm tracking-widest uppercase text-white/40">
+              Instagram
+            </h2>
+            <a
+              href="https://instagram.com/sumiautomatic"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs text-white/20 hover:text-white/50 transition-colors"
+            >
+              @sumiautomatic
+            </a>
+          </div>
         </ScrollReveal>
-        <ImageGrid images={igImages} columns={3} />
+        <InstagramGrid posts={instagramPosts} />
       </section>
 
       {/* Fresh Tattoos */}
