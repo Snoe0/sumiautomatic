@@ -15,9 +15,9 @@ export default function Header() {
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-[#0a0a0a]/80 backdrop-blur-md border-b border-white/5">
       <div className="flex items-center justify-between px-6 py-4 md:px-10">
-        <Link href="/" className="text-sm tracking-widest uppercase font-light">
+        <Link href="/" className="text-sm tracking-widest uppercase font-light text-white">
           @sumiautomatic
         </Link>
 
@@ -28,7 +28,7 @@ export default function Header() {
               key={link.href}
               href={link.href}
               className={`text-sm tracking-wide transition-opacity hover:opacity-60 ${
-                pathname === link.href ? "opacity-100" : "opacity-80"
+                pathname === link.href ? "text-white opacity-100" : "text-white/70"
               }`}
             >
               {link.label}
@@ -42,20 +42,20 @@ export default function Header() {
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Toggle menu"
         >
-          <span className={`block w-5 h-px bg-black transition-transform ${menuOpen ? "rotate-45 translate-y-[3.5px]" : ""}`} />
-          <span className={`block w-5 h-px bg-black transition-opacity ${menuOpen ? "opacity-0" : ""}`} />
-          <span className={`block w-5 h-px bg-black transition-transform ${menuOpen ? "-rotate-45 -translate-y-[3.5px]" : ""}`} />
+          <span className={`block w-5 h-px bg-white transition-transform ${menuOpen ? "rotate-45 translate-y-[3.5px]" : ""}`} />
+          <span className={`block w-5 h-px bg-white transition-opacity ${menuOpen ? "opacity-0" : ""}`} />
+          <span className={`block w-5 h-px bg-white transition-transform ${menuOpen ? "-rotate-45 -translate-y-[3.5px]" : ""}`} />
         </button>
       </div>
 
       {/* Mobile menu */}
       {menuOpen && (
-        <nav className="md:hidden flex flex-col items-center gap-6 pb-8 bg-white/95 backdrop-blur-md">
+        <nav className="md:hidden flex flex-col items-center gap-6 pb-8 bg-[#0a0a0a]/95 backdrop-blur-md">
           {links.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="text-sm tracking-wide"
+              className="text-sm tracking-wide text-white/80"
               onClick={() => setMenuOpen(false)}
             >
               {link.label}

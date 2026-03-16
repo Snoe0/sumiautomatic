@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Metadata } from "next";
+import ScrollReveal from "@/components/ScrollReveal";
 
 export const metadata: Metadata = {
   title: "Portfolio — @sumiautomatic",
@@ -7,9 +8,7 @@ export const metadata: Metadata = {
 
 const igImages = Array.from({ length: 7 }, (_, i) => `/images/portfolio/ig-${i + 1}.png`);
 
-const freshImages = Array.from({ length: 8 }, (_, i) => {
-  return `/images/portfolio/fresh-${i + 1}.jpeg`;
-});
+const freshImages = Array.from({ length: 8 }, (_, i) => `/images/portfolio/fresh-${i + 1}.jpeg`);
 
 const healedImages = [
   "/images/portfolio/healed-1.png",
@@ -48,15 +47,18 @@ function ImageGrid({ images, columns = 3 }: { images: string[]; columns?: number
   return (
     <div className={`grid ${colClass} gap-3`}>
       {images.map((src, i) => (
-        <div key={i} className="aspect-square relative overflow-hidden bg-neutral-100">
-          <Image
-            src={src}
-            alt="Tattoo work"
-            fill
-            sizes="(max-width: 768px) 50vw, 33vw"
-            className="object-cover hover:scale-105 transition-transform duration-300"
-          />
-        </div>
+        <ScrollReveal key={i} delay={i * 0.05}>
+          <div className="aspect-square relative overflow-hidden bg-white/5 group">
+            <Image
+              src={src}
+              alt="Tattoo work"
+              fill
+              sizes="(max-width: 768px) 50vw, 33vw"
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+            <div className="absolute inset-0 bg-white/0 group-hover:bg-white/5 transition-colors duration-300" />
+          </div>
+        </ScrollReveal>
       ))}
     </div>
   );
@@ -65,37 +67,49 @@ function ImageGrid({ images, columns = 3 }: { images: string[]; columns?: number
 export default function Portfolio() {
   return (
     <div className="max-w-6xl mx-auto px-6 py-12">
-      <h1 className="text-4xl md:text-5xl font-light tracking-tight mb-16">Portfolio</h1>
+      <ScrollReveal>
+        <h1 className="text-4xl md:text-5xl font-extralight tracking-tight mb-16 text-white">
+          Portfolio
+        </h1>
+      </ScrollReveal>
 
       {/* Instagram Posts */}
       <section className="mb-20">
-        <h2 className="text-sm tracking-widest uppercase mb-8 text-neutral-500">
-          Instagram
-        </h2>
+        <ScrollReveal>
+          <h2 className="text-sm tracking-widest uppercase mb-8 text-white/40">
+            Instagram
+          </h2>
+        </ScrollReveal>
         <ImageGrid images={igImages} columns={3} />
       </section>
 
       {/* Fresh Tattoos */}
       <section className="mb-20">
-        <h2 className="text-sm tracking-widest uppercase mb-8 text-neutral-500">
-          Fresh Tattoos
-        </h2>
+        <ScrollReveal>
+          <h2 className="text-sm tracking-widest uppercase mb-8 text-white/40">
+            Fresh Tattoos
+          </h2>
+        </ScrollReveal>
         <ImageGrid images={freshImages} columns={4} />
       </section>
 
       {/* Healed Tattoos */}
       <section className="mb-20">
-        <h2 className="text-sm tracking-widest uppercase mb-8 text-neutral-500">
-          Healed Tattoos
-        </h2>
+        <ScrollReveal>
+          <h2 className="text-sm tracking-widest uppercase mb-8 text-white/40">
+            Healed Tattoos
+          </h2>
+        </ScrollReveal>
         <ImageGrid images={healedImages} columns={4} />
       </section>
 
       {/* More Work */}
       <section className="mb-20">
-        <h2 className="text-sm tracking-widest uppercase mb-8 text-neutral-500">
-          More Work
-        </h2>
+        <ScrollReveal>
+          <h2 className="text-sm tracking-widest uppercase mb-8 text-white/40">
+            More Work
+          </h2>
+        </ScrollReveal>
         <ImageGrid images={extraImages} columns={4} />
       </section>
     </div>
