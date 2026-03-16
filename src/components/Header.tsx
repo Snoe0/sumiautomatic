@@ -9,9 +9,10 @@ export default function Header() {
   const pathname = usePathname();
 
   const links = [
-    { href: "/portfolio", label: "Portfolio" },
-    { href: "/about", label: "About" },
-    { href: "/book", label: "Book" },
+    { href: "/portfolio", label: "portfolio" },
+    { href: "/flash", label: "flash" },
+    { href: "/about", label: "about" },
+    { href: "/book", label: "book" },
   ];
 
   return (

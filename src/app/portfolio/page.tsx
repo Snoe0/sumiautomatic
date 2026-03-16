@@ -69,7 +69,7 @@ export default function Portfolio() {
     <div className="max-w-6xl mx-auto px-6 py-12">
       <ScrollReveal>
         <h1 className="text-4xl md:text-5xl font-extralight tracking-tight mb-16 text-white">
-          Portfolio
+          portfolio
         </h1>
       </ScrollReveal>
 

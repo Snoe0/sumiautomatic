@@ -143,15 +143,17 @@ export default function Home() {
       <div className="relative w-full max-w-5xl mx-auto" style={{ height: "80vh" }}>
         {/* Center text */}
         <motion.div
-          className="absolute inset-0 flex flex-col items-center justify-center z-10 pointer-events-none"
+          className="absolute inset-0 flex flex-col items-end justify-center z-10 pointer-events-none pr-6 md:pr-12"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.8 }}
         >
-          <h1 className="text-5xl md:text-7xl font-extralight tracking-tight text-center text-white">
-            nyc tattoos
+          <h1 className="text-7xl md:text-9xl font-extralight tracking-tight text-right text-white leading-[0.9]">
+            nyc
+            <br />
+            tattoos
           </h1>
-          <p className="text-sm md:text-base tracking-[0.3em] mt-3 font-light text-white/50 uppercase">
+          <p className="text-lg md:text-xl tracking-[0.3em] mt-4 font-extralight text-white/50 text-right">
             by ayla sumi
           </p>
         </motion.div>
