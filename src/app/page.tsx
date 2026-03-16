@@ -5,21 +5,32 @@ import Link from "next/link";
 import { motion, useMotionValue, useSpring, type MotionValue } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
-const images = [
-  { src: "/images/home/hero-1.png", top: "5%", left: "2%", width: "28%", rotate: -3, z: 2 },
-  { src: "/images/home/hero-2.png", top: "8%", right: "5%", width: "24%", rotate: 2, z: 3 },
-  { src: "/images/home/hero-3.png", bottom: "12%", left: "8%", width: "26%", rotate: 1, z: 4 },
-  { src: "/images/home/hero-4.png", bottom: "5%", right: "2%", width: "27%", rotate: -2, z: 5 },
-  { src: "/images/home/hero-5.png", top: "38%", left: "30%", width: "22%", rotate: 3, z: 1 },
+interface HeroImage {
+  src: string;
+  top?: string;
+  bottom?: string;
+  left?: string;
+  right?: string;
+  width: string;
+  rotate: number;
+  z: number;
+}
+
+const images: HeroImage[] = [
+  { src: "/images/home/hero-1.png", top: "5%", left: "0%", width: "26%", rotate: -2, z: 2 },
+  { src: "/images/home/hero-2.png", top: "3%", left: "22%", width: "22%", rotate: 1.5, z: 3 },
+  { src: "/images/home/hero-3.png", bottom: "10%", left: "0%", width: "24%", rotate: 0.5, z: 4 },
+  { src: "/images/home/hero-4.png", bottom: "8%", left: "20%", width: "25%", rotate: -1.5, z: 5 },
+  { src: "/images/home/hero-5.png", top: "32%", left: "10%", width: "20%", rotate: 2, z: 1 },
 ];
 
 // Drift keyframes for each image
 const driftVariants = [
-  { y: [0, -12, 0, 8, 0], duration: 7 },
-  { y: [0, 10, 0, -8, 0], duration: 8.5 },
-  { y: [0, -8, 0, 14, 0], duration: 6.5 },
-  { y: [0, 12, 0, -10, 0], duration: 9 },
-  { y: [0, -10, 0, 6, 0], duration: 7.5 },
+  { y: [0, -4, 0, 3, 0], duration: 8 },
+  { y: [0, 3, 0, -3, 0], duration: 9.5 },
+  { y: [0, -3, 0, 5, 0], duration: 7.5 },
+  { y: [0, 4, 0, -4, 0], duration: 10 },
+  { y: [0, -3, 0, 2, 0], duration: 8.5 },
 ];
 
 function FloatingImage({
@@ -54,10 +65,10 @@ function FloatingImage({
       const dx = centerX - mx;
       const dy = centerY - my;
       const dist = Math.sqrt(dx * dx + dy * dy);
-      const maxDist = 250;
+      const maxDist = 200;
 
       if (dist < maxDist && dist > 0) {
-        const force = (1 - dist / maxDist) * 25;
+        const force = (1 - dist / maxDist) * 10;
         x.set((dx / dist) * force);
         y.set((dy / dist) * force);
       } else {
@@ -138,9 +149,18 @@ export default function Home() {
   if (!mounted) return null;
 
   return (
-    <section className="min-h-screen flex flex-col items-center justify-center px-6">
+    <section className="min-h-screen flex flex-col items-center justify-center px-6 relative overflow-hidden">
+      {/* Dot grid background */}
+      <div
+        className="absolute inset-0 z-0 opacity-[0.07]"
+        style={{
+          backgroundImage: "radial-gradient(circle, #ffffff 1px, transparent 1px)",
+          backgroundSize: "32px 32px",
+        }}
+      />
+
       {/* Hero collage */}
-      <div className="relative w-full max-w-5xl mx-auto" style={{ height: "80vh" }}>
+      <div className="relative w-full max-w-5xl mx-auto z-[1]" style={{ height: "80vh" }}>
         {/* Center text */}
         <motion.div
           className="absolute inset-0 flex flex-col items-end justify-center z-10 pointer-events-none pr-6 md:pr-12"
