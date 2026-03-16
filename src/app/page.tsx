@@ -112,7 +112,7 @@ export default function Home() {
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.3 + i * 0.1 }}
-                  whileHover={{ scale: 1.02 }}
+                  whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
                 >
                   <Image
                     src={src}
@@ -144,6 +144,8 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Second section — more marquee rows with different opacity */}
+      <section className="relative z-[1] py-20 overflow-hidden">
         {/* Portfolio teaser */}
         <div className="relative z-[1] max-w-6xl mx-auto px-6 md:px-12 mt-16">
           <motion.div
