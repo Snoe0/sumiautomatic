@@ -144,14 +144,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Second section — more marquee rows with different opacity */}
-      <section className="relative z-[1] py-20 overflow-hidden">
-        <div className="flex flex-col gap-0">
-          <MarqueeRow direction="right" speed={28} />
-          <MarqueeRow direction="left" speed={34} />
-          <MarqueeRow direction="right" speed={31} />
-        </div>
-
         {/* Portfolio teaser */}
         <div className="relative z-[1] max-w-6xl mx-auto px-6 md:px-12 mt-16">
           <motion.div

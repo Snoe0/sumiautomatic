@@ -8,24 +8,36 @@ export const metadata: Metadata = {
   title: "Portfolio — @sumiautomatic",
 };
 
-const freshImages = Array.from({ length: 8 }, (_, i) => `/images/portfolio/fresh-${i + 1}.jpeg`);
+// Section: instagram (8 images — originally downloaded as fresh-1..8.jpeg)
+const instagramImages = Array.from({ length: 8 }, (_, i) => `/images/portfolio/fresh-${i + 1}.jpeg`);
 
+// Section: fresh (18 images)
+const freshImages = [
+  "/images/portfolio/ig-1.png",
+  "/images/portfolio/ig-2.png",
+  "/images/portfolio/ig-3.png",    // was also hero-2
+  "/images/portfolio/ig-4.png",
+  "/images/portfolio/ig-5.png",
+  "/images/portfolio/ig-6.png",
+  "/images/portfolio/ig-7.png",
+  "/images/portfolio/fresh-9.png",
+  "/images/portfolio/fresh-10.png",
+  "/images/portfolio/fresh-11.png",
+  "/images/portfolio/fresh-12.png",
+  "/images/portfolio/fresh-13.png",
+  "/images/portfolio/fresh-14.jpeg",
+  "/images/portfolio/fresh-15.png",
+  "/images/portfolio/fresh-16.png",
+  "/images/portfolio/fresh-17.png",
+  "/images/portfolio/fresh-18.png",
+];
+
+// Section: healed (12 images)
 const healedImages = [
-  "/images/portfolio/healed-1.png",
-  "/images/portfolio/healed-2.png",
-  "/images/portfolio/healed-3.png",
-  "/images/portfolio/healed-4.jpeg",
-  "/images/portfolio/healed-5.png",
-  "/images/portfolio/healed-6.png",
-  "/images/portfolio/healed-7.png",
-  "/images/portfolio/healed-8.png",
   "/images/portfolio/healed-9.jpg",
   "/images/portfolio/healed-10.jpeg",
   "/images/portfolio/healed-11.png",
   "/images/portfolio/healed-12.png",
-];
-
-const extraImages = [
   "/images/portfolio/extra-1.png",
   "/images/portfolio/extra-2.png",
   "/images/portfolio/extra-3.jpeg",
@@ -65,7 +77,7 @@ function ImageGrid({ images, columns = 3 }: { images: string[]; columns?: number
 }
 
 export default async function Portfolio() {
-  const instagramPosts = await fetchInstagramPosts(12);
+  const livePosts = await fetchInstagramPosts(12);
 
   return (
     <div className="max-w-6xl mx-auto px-6 py-12">
@@ -75,12 +87,12 @@ export default async function Portfolio() {
         </h1>
       </ScrollReveal>
 
-      {/* Instagram Posts — live feed or fallback */}
+      {/* Instagram */}
       <section className="mb-20">
         <ScrollReveal>
           <div className="flex items-center gap-3 mb-8">
             <h2 className="text-sm tracking-widest uppercase text-white/40">
-              Instagram
+              instagram
             </h2>
             <a
               href="https://instagram.com/sumiautomatic"
@@ -92,37 +104,31 @@ export default async function Portfolio() {
             </a>
           </div>
         </ScrollReveal>
-        <InstagramGrid posts={instagramPosts} />
+        {livePosts.length > 0 ? (
+          <InstagramGrid posts={livePosts} />
+        ) : (
+          <ImageGrid images={instagramImages} columns={4} />
+        )}
       </section>
 
-      {/* Fresh Tattoos */}
+      {/* Fresh */}
       <section className="mb-20">
         <ScrollReveal>
           <h2 className="text-sm tracking-widest uppercase mb-8 text-white/40">
-            Fresh Tattoos
+            fresh
           </h2>
         </ScrollReveal>
         <ImageGrid images={freshImages} columns={4} />
       </section>
 
-      {/* Healed Tattoos */}
+      {/* Healed */}
       <section className="mb-20">
         <ScrollReveal>
           <h2 className="text-sm tracking-widest uppercase mb-8 text-white/40">
-            Healed Tattoos
+            healed
           </h2>
         </ScrollReveal>
         <ImageGrid images={healedImages} columns={4} />
-      </section>
-
-      {/* More Work */}
-      <section className="mb-20">
-        <ScrollReveal>
-          <h2 className="text-sm tracking-widest uppercase mb-8 text-white/40">
-            More Work
-          </h2>
-        </ScrollReveal>
-        <ImageGrid images={extraImages} columns={4} />
       </section>
     </div>
   );
