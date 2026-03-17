@@ -2,8 +2,6 @@
 
 import { useState, FormEvent } from "react";
 
-const DISCORD_WEBHOOK_URL = process.env.NEXT_PUBLIC_DISCORD_WEBHOOK_URL || "";
-
 export default function ContactForm() {
   const [formData, setFormData] = useState({
     name: "",
@@ -17,21 +15,11 @@ export default function ContactForm() {
     e.preventDefault();
     setStatus("sending");
 
-    const content = [
-      `**New Booking Request**`,
-      `**Name:** ${formData.name}`,
-      `**Email:** ${formData.email}`,
-      `**Interest:** ${formData.interest}`,
-      formData.message ? `**Message:** ${formData.message}` : "",
-    ]
-      .filter(Boolean)
-      .join("\n");
-
     try {
-      const res = await fetch(DISCORD_WEBHOOK_URL, {
+      const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ content }),
+        body: JSON.stringify(formData),
       });
 
       if (res.ok) {
