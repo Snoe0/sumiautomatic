@@ -10,20 +10,29 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
     }
 
-    const content = [
-      `**New Booking Request**`,
-      `**Name:** ${name}`,
-      `**Email:** ${email}`,
-      `**Interest:** ${interest}`,
-      message ? `**Message:** ${message}` : "",
-    ]
-      .filter(Boolean)
-      .join("\n");
+    const fields = [
+      { name: "Name", value: name, inline: true },
+      { name: "Email", value: email, inline: true },
+      { name: "Interest", value: interest, inline: true },
+    ];
+
+    if (message) {
+      fields.push({ name: "Message", value: message, inline: false });
+    }
 
     const res = await fetch(DISCORD_WEBHOOK_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ content }),
+      body: JSON.stringify({
+        embeds: [
+          {
+            title: "New Booking Request",
+            color: 0xffffff,
+            fields,
+            timestamp: new Date().toISOString(),
+          },
+        ],
+      }),
     });
 
     if (!res.ok) {
