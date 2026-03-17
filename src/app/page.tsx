@@ -15,7 +15,7 @@ const featuredImages = [
 ];
 
 function MarqueeRow({ direction = "left", speed = 30 }: { direction?: "left" | "right"; speed?: number }) {
-  const text = "nyc tattoos";
+  const text = "sumiautomatic aylasumi";
   // Repeat enough times to fill well beyond viewport
   const repeated = Array(12).fill(text).join(" \u00A0\u00A0\u00A0 ");
 
@@ -23,7 +23,7 @@ function MarqueeRow({ direction = "left", speed = 30 }: { direction?: "left" | "
     <div className="overflow-hidden whitespace-nowrap py-2">
       <motion.div
         className="inline-block text-[8vw] md:text-[6vw] font-normal text-white/[0.07] leading-none select-none"
-        style={{ fontFamily: "Arial, Helvetica, sans-serif" }}
+        style={{ fontFamily: "var(--font-heading)" }}
         animate={{
           x: direction === "left" ? ["0%", "-50%"] : ["-50%", "0%"],
         }}
@@ -85,15 +85,14 @@ export default function Home() {
           >
             <h1
               className="text-[12vw] md:text-[8vw] font-normal text-white leading-[0.95]"
-              style={{ fontFamily: "Arial, Helvetica, sans-serif" }}
+              style={{ fontFamily: "var(--font-heading)" }}
             >
               nyc tattoos
             </h1>
             <p
               className="text-[3.5vw] md:text-[1.8vw] font-normal text-white/50 mt-4 tracking-[0.08em]"
-              style={{ fontFamily: "Arial, Helvetica, sans-serif" }}
+              style={{ fontFamily: "var(--font-heading)" }}
             >
-              by ayla sumi
             </p>
           </motion.div>
 
@@ -142,28 +141,22 @@ export default function Home() {
           </motion.div>
 
           {/* Portfolio teaser */}
-        <div className="relative z-[1] max-w-6xl mx-auto px-6 md:px-12 mt-16">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="text-center"
-          >
-            <Link
-              href="/portfolio"
-              className="text-sm tracking-widest uppercase text-white/30 hover:text-white/60 transition-colors"
+          <div className="relative z-[1] max-w-6xl mx-auto px-6 md:px-12 mt-16">
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              className="text-center"
             >
-              view full portfolio →
-            </Link>
-          </motion.div>
+              <Link
+                href="/portfolio"
+                className="text-sm tracking-widest uppercase text-white/30 hover:text-white/60 transition-colors"
+              >
+                view full portfolio →
+              </Link>
+            </motion.div>
+          </div>
         </div>
-        
-        </div>
-      </section>
-
-      {/* Second section — more marquee rows with different opacity */}
-      <section className="relative z-[1] py-20 overflow-hidden">
-        
       </section>
     </div>
   );

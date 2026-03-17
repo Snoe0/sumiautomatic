@@ -26,7 +26,7 @@ export default function About() {
         {/* Large "about" text overlaid */}
         <h1
           className="absolute bottom-[5%] md:bottom-[8%] left-0 z-[2] text-[22vw] md:text-[18vw] font-normal leading-[0.85] text-white/80 pointer-events-none"
-          style={{ fontFamily: "Arial, Helvetica, sans-serif" }}
+          style={{ fontFamily: "var(--font-heading)" }}
         >
           about
         </h1>
