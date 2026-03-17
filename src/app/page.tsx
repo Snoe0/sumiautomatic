@@ -14,15 +14,16 @@ const featuredImages = [
   "/images/portfolio/fresh-1.jpeg",
 ];
 
-function MarqueeRow({ direction = "left", speed = 30 }: { direction?: "left" | "right"; speed?: number }) {
-  const text = "sumiautomatic aylasumi";
+function MarqueeRow({ text = "sumiautomatic", direction = "left", speed = 30, small = false }: { text?: string; direction?: "left" | "right"; speed?: number; small?: boolean }) {
   // Repeat enough times to fill well beyond viewport
   const repeated = Array(12).fill(text).join(" \u00A0\u00A0\u00A0 ");
 
   return (
     <div className="overflow-hidden whitespace-nowrap py-2">
       <motion.div
-        className="inline-block text-[8vw] md:text-[6vw] font-normal text-white/[0.07] leading-none select-none"
+        className={`inline-block font-normal leading-none select-none ${
+          small ? "text-[5vw] md:text-[3.5vw] text-white/[0.04]" : "text-[8vw] md:text-[6vw] text-white/[0.07]"
+        }`}
         style={{ fontFamily: "var(--font-heading)" }}
         animate={{
           x: direction === "left" ? ["0%", "-50%"] : ["-50%", "0%"],
@@ -65,6 +66,7 @@ export default function Home() {
       <section className="relative z-[1] min-h-screen flex flex-col justify-center">
         {/* Marquee rows behind content */}
         <div className="absolute inset-0 flex flex-col justify-center gap-0 z-0 overflow-hidden">
+          <MarqueeRow text="aylasumi" direction="right" speed={37} small />
           <MarqueeRow direction="left" speed={35} />
           <MarqueeRow direction="right" speed={40} />
           <MarqueeRow direction="left" speed={30} />
@@ -72,6 +74,7 @@ export default function Home() {
           <MarqueeRow direction="left" speed={33} />
           <MarqueeRow direction="right" speed={42} />
           <MarqueeRow direction="left" speed={36} />
+          <MarqueeRow text="aylasumi" direction="right" speed={34} small />
         </div>
 
         {/* Featured works grid */}
@@ -97,32 +100,25 @@ export default function Home() {
           </motion.div>
 
           {/* Image grid — asymmetric masonry-like */}
-          <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
-            {featuredImages.map((src, i) => {
-              // Alternate tall and wide images
-              const isTall = i % 3 === 0;
-              return (
-                <motion.div
-                  key={i}
-                  className={`relative overflow-hidden bg-white/5 group ${
-                    isTall ? "row-span-2" : ""
-                  }`}
-                  style={{ aspectRatio: isTall ? "3/5" : "4/3" }}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.3 + i * 0.1 }}
-                >
-                  <Image
-                    src={src}
-                    alt="Featured tattoo work"
-                    fill
-                    sizes="(max-width: 768px) 50vw, 25vw"
-                    className="object-cover transition-opacity duration-300 group-hover:opacity-80"
-                    priority={i < 4}
-                  />
-                </motion.div>
-              );
-            })}
+          <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-3 gap-0">
+            {featuredImages.map((src, i) => (
+              <motion.div
+                key={i}
+                className="relative overflow-hidden bg-white/5 group aspect-square"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.3 + i * 0.15 }}
+              >
+                <Image
+                  src={src}
+                  alt="Featured tattoo work"
+                  fill
+                  sizes="(max-width: 768px) 50vw, 33vw"
+                  className="object-cover transition-opacity duration-300 group-hover:opacity-80"
+                  priority={i < 4}
+                />
+              </motion.div>
+            ))}
           </div>
 
           {/* CTA */}
