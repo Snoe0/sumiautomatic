@@ -51,12 +51,14 @@ export default function Header() {
 
       {/* Mobile menu */}
       {menuOpen && (
-        <nav className="md:hidden flex flex-col items-center gap-6 pb-8 bg-[#0a0a0a]/95 backdrop-blur-md">
+        <nav className="md:hidden flex flex-col items-center gap-6 pb-8">
           {links.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="text-sm tracking-wide text-white/80"
+              className={`text-sm tracking-wide transition-opacity hover:opacity-60 ${
+                pathname === link.href ? "text-white opacity-100" : "text-white/70"
+              }`}
               onClick={() => setMenuOpen(false)}
             >
               {link.label}

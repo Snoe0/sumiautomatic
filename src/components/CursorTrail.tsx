@@ -15,6 +15,9 @@ export default function CursorTrail() {
   const animRef = useRef<number>(0);
 
   useEffect(() => {
+    const isTouchDevice = window.matchMedia("(pointer: coarse)").matches;
+    if (isTouchDevice) return;
+
     const canvas = canvasRef.current;
     if (!canvas) return;
 
